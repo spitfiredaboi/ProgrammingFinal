@@ -11,6 +11,8 @@ public class Car : MonoBehaviour
 
     private float verticalInput;
     private float horizontalInput;
+    private List<int> numbers = new List<int>() { 1, 2, 3, 4, 5 };
+
 
 
     // Start is called before the first frame update
@@ -18,18 +20,21 @@ public class Car : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+
+
+
+
     }
 
    
     void Update()
     {
 
-        /*
-         * FINAL EXAM #1
-         * Write a script that will allow movement.
-         * The Vertical Axis should make the player move forwards and backwards
-         * The Horizontal Axis should make the player rotate on the Vector3.back axis
-         */
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
+
+        transform.Translate(Vector3.up * moveSpeed * Time.deltaTime * verticalInput);
+        transform.Rotate(Vector3.back * Time.deltaTime * horizontalInput * turnSpeed);
 
     }
 }
